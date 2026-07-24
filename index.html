@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Videofólio — Edição de Vídeos & Audiovisual</title>
+  
+  <!-- Fontes do Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* Regras dedicadas para garantir o alinhamento lado a lado dos feedbacks */
+    .feedback-container-row {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 20px !important;
+      margin-top: 32px !important;
+      width: 100% !important;
+    }
+
+    .feedback-card-item {
+      flex: 1 1 280px !important;
+      max-width: 360px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      background: #111111 !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      text-decoration: none !important;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+
+    .feedback-card-item:hover {
+      transform: translateY(-6px) !important;
+      border-color: rgba(255, 255, 255, 0.35) !important;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6) !important;
+    }
+
+    .feedback-card-img-box {
+      width: 100% !important;
+      background: #0d0d0d !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 12px !important;
+    }
+
+    .feedback-card-img-box img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 380px !important;
+      object-fit: contain !important;
+      border-radius: 8px !important;
+      display: block !important;
+    }
+
+    .feedback-card-caption {
+      padding: 12px 16px !important;
+      background: #181818 !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+      text-align: center !important;
+      margin-top: auto !important;
+    }
+
+    .feedback-card-caption span {
+      font-size: 0.85rem !important;
+      color: rgba(255, 255, 255, 0.75) !important;
+      font-weight: 500 !important;
+    }
+
+    .feedback-card-item:hover .feedback-card-caption span {
+      color: #ffffff !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Link de Acessibilidade -->
+  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+  <!-- Header / Navegação -->
+  <header class="site-header" id="header">
+    <div class="wrap header-inner">
+      <a href="#" class="logo">
+        jucorrea<span class="logo-dot">.edit</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+    <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#portfolio">Portfólio</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="https://wa.me/554399500186?text=Olá!%20Gostaria%20de%20fazer%20um%20orçamento%20de%20edição%20de%20vídeo." target="_blank" rel="noopener" class="nav-cta">Fazer Orçamento</a></li>
+    </ul>
+</nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="wrap hero-inner" data-reveal>
+        <p class="eyebrow">Edição & Pós-Produção</p>
+        <h1>
+          Vídeos que prendem a atenção e
+          <span class="hero-rotator" id="rotator">
+            <span class="word is-active">geram retenção.</span>
+            <span class="word">elevam sua marca.</span>
+            <span class="word">convertem clientes.</span>
+          </span>
+        </h1>
+        <p class="hero-lead">
+          Edição de vídeos estratégica para YouTube, Instagram e Infoprodutos. Faço vídeos para que você evolua nos seus resultados e autoridade visual.
+        </p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn btn-primary">Ver Portfólio</a>
+          <a href="#contato" class="btn btn-ghost">Iniciar Projeto</a>
+        </div>
+      </div>
+
+      <!-- Letreiro Infinito / Marquee -->
+      <div class="hero-marquee">
+        <div class="marquee-track">
+          <span>YouTube • Shorts • Reels • Infoprodutos • VSLs • Edição Dinâmica • Color Grading • Motion Graphics •</span>
+          <span>YouTube • Shorts • Reels • Infoprodutos • VSLs • Edição Dinâmica • Color Grading • Motion Graphics •</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="about">
+      <div class="wrap about-grid">
+        <div class="about-media" data-reveal>
+          <img src="assets/images/foto-ju.jpeg" alt="Foto da Ju Corrêa" class="about-photo">
+        </div>
+        <div class="about-content" data-reveal>
+          <p class="eyebrow">Sobre mim</p>
+          <h2>A narrativa certa transforma simples cortes em autoridade.</h2>
+          <p>
+            Especialista em pós-produção audiovisual focada no mercado digital. Meu trabalho é transformar gravações brutas em vídeos dinâmicos, com ritmo preciso, design sonoro marcante e foco total em retenção.
+          </p>
+          
+          <ul class="about-stats">
+            <li>
+              <span class="stat-num">+4000</span>
+              <span class="stat-label">Vídeos Editados</span>
+            </li>
+            <li>
+              <span class="stat-num">98%</span>
+              <span class="stat-label">Retenção Média</span>
+            </li>
+            <li>
+              <span class="stat-num">4+</span>
+              <span class="stat-label">Anos de Experiência</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos">
+      <div class="wrap">
+        <div data-reveal>
+          <p class="eyebrow">Soluções</p>
+          <h2>O que posso fazer pelo seu projeto</h2>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card" data-reveal>
+            <div class="service-icon">▶</div>
+            <h3>Conteúdo de Alto Impacto</h3>
+            <p>Edição dinâmica para Reels, TikTok e Shorts com legendas animadas, sound design e elementos para máxima retenção.</p>
+          </div>
+
+          <div class="service-card" data-reveal>
+            <div class="service-icon">🎬</div>
+            <h3>Vídeos para YouTube</h3>
+            <p>Pós-produção completa para canais: cortes estratégicos, color grading, trilha sonora e ritmo fluido para long form.</p>
+          </div>
+
+          <div class="service-card" data-reveal>
+            <div class="service-icon">⚡</div>
+            <h3>Infoprodutos & VSLs</h3>
+            <p>Edição focada em conversão para cursos online, aulas inaugurais e vídeos de vendas que transmitem alto valor.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfólio -->
+    <section id="portfolio">
+      <div class="wrap">
+        <div class="portfolio-header" data-reveal>
+          <div>
+            <p class="eyebrow">Projetos Recentes</p>
+            <h2>Trabalhos em Destaque</h2>
+          </div>
+
+          <div class="portfolio-filters" id="portfolioFilters">
+            <button class="filter-btn is-active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="reels">Reels / Shorts</button>
+            <button class="filter-btn" data-filter="youtube">YouTube</button>
+            <button class="filter-btn" data-filter="capas">Capas & Thumbnails</button>
+          </div>
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+          
+          <!-- REELS / SHORTS 1 (Teaser MP4) -->
+          <div class="portfolio-item" data-category="reels" data-reveal>
+            <div class="portfolio-thumb-wrapper" style="height: 220px; border-radius: 12px; overflow: hidden; background: #000;">
+              <video 
+                src="assets/videos/Edição insta - Teaser.mp4" 
+                controls 
+                playsinline 
+                class="portfolio-img" 
+                style="object-fit: cover; width: 100%; height: 100%; border-radius: 12px;">
+              </video>
+            </div>
+            <h3>Teaser Institucional</h3>
+            <p class="tag">Reels / Instagram</p>
+          </div>
+
+          <!-- REELS / SHORTS 2 (Cozinha MP4) -->
+          <div class="portfolio-item" data-category="reels" data-reveal>
+            <div class="portfolio-thumb-wrapper" style="height: 220px; border-radius: 12px; overflow: hidden; background: #000;">
+              <video 
+                src="assets/videos/Edição Insta - cozinha.mp4" 
+                controls 
+                playsinline 
+                class="portfolio-img" 
+                style="object-fit: contain; width: 100%; height: 100%; border-radius: 12px;">
+              </video>
+            </div>
+            <h3>Edição Dinâmica & Ritmo</h3>
+            <p class="tag">Reels / Shorts</p>
+          </div>
+
+          <!-- YOUTUBE 1 -->
+          <div class="portfolio-item" data-category="youtube" data-reveal>
+            <iframe 
+              width="100%" 
+              height="220" 
+              src="https://www.youtube.com/embed/iqClwL_6DC4" 
+              title="Vídeo YouTube 1" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen
+              style="border-radius: 12px;">
+            </iframe>
+            <h3>Edição para Canal no YouTube</h3>
+            <p class="tag">YouTube</p>
+          </div>
+
+          <!-- YOUTUBE 3 -->
+          <div class="portfolio-item" data-category="youtube" data-reveal>
+            <iframe 
+              width="100%" 
+              height="220" 
+              src="https://www.youtube.com/embed/VZJd8BrNWE8" 
+              title="Vídeo YouTube 3" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen
+              style="border-radius: 12px;">
+            </iframe>
+            <h3>Edição para Canal no YouTube</h3>
+            <p class="tag">YouTube</p>
+          </div>
+
+          <!-- CAPAS & THUMBNAILS (MP4 1) -->
+          <div class="portfolio-item" data-category="capas" data-reveal>
+            <div class="portfolio-thumb-wrapper" style="height: 220px; border-radius: 12px; overflow: hidden; background: #000;">
+              <video 
+                src="assets/videos/CAPAS JULYANA I CLIENTES EDIÇÃO (1).mp4" 
+                autoplay 
+                loop 
+                muted 
+                playsinline 
+                class="portfolio-img" 
+                style="object-fit: cover; width: 100%; height: 100%; border-radius: 12px;">
+              </video>
+            </div>
+            <h3>Design de Capa & Motion</h3>
+            <p class="tag">Capas & Thumbnails</p>
+          </div>
+
+          <!-- CAPAS & THUMBNAILS (IMAGEM - RAYSSA CAPA) -->
+          <div class="portfolio-item" data-category="capas" data-reveal>
+            <div class="portfolio-thumb-wrapper" style="height: 220px; border-radius: 12px; overflow: hidden; background: #000;">
+              <img 
+                src="assets/images/Rayssa capa.jpeg" 
+                alt="Design de Capa - Rayssa" 
+                class="portfolio-img" 
+                style="object-fit: cover; width: 100%; height: 100%; border-radius: 12px;">
+            </div>
+            <h3>Design de Capa — Rayssa</h3>
+            <p class="tag">Capas & Thumbnails</p>
+          </div>
+
+        </div>
+
+        <p class="portfolio-empty" id="portfolioEmpty" style="display: none;">
+          Nenhum projeto encontrado nesta categoria no momento.
+        </p>
+      </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section id="depoimentos">
+      <div class="wrap">
+        <div data-reveal>
+          <p class="eyebrow">Feedback</p>
+          <h2>O que dizem os parceiros</h2>
+        </div>
+
+        <div class="feedback-grid">
+          
+          <!-- Card 1 -->
+          <div class="feedback-card" data-reveal>
+            <div class="feedback-icon">💬</div>
+            <p class="feedback-text">
+              "Juuu, acabei de assistir. Tá perfeitoooo, muito obrigada! 💕"
+            </p>
+            <div class="feedback-author">
+              <a href="https://www.instagram.com/eujulianaleaoo/" target="_blank" rel="noopener" class="feedback-link">
+                @eujulianaleaoo
+              </a>
+              <span class="feedback-role">Cliente</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="feedback-card" data-reveal>
+            <div class="feedback-icon">⚡</div>
+            <p class="feedback-text">
+              "Acabei de ver. Eu ameeeeei, arrasouuuu! 🥰 Já vou postar. Amei a sugestão de capa também!💖💖💖💖"
+            </p>
+            <div class="feedback-author">
+              <a href="https://www.instagram.com/rayssa.academy/" target="_blank" rel="noopener" class="feedback-link">
+                @rayssa.academy
+              </a>
+              <span class="feedback-role">Cliente</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="feedback-card" data-reveal>
+            <div class="feedback-icon">🎬</div>
+            <p class="feedback-text">
+              "Meninaaaas, como sempre, amei: nenhuma alteração. Vocês até me incentivam a gravar mais ahahahah! 🤭"
+            </p>
+            <div class="feedback-author">
+              <a href="https://www.instagram.com/brumenddes/" target="_blank" rel="noopener" class="feedback-link">
+                @brumenddes
+              </a>
+              <span class="feedback-role">Cliente</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato">
+      <div class="wrap contact-grid">
+        <div data-reveal>
+          <p class="eyebrow">Contato</p>
+          <h2>Vamos criar algo incrível juntos?</h2>
+          <p>Envie os detalhes do seu projeto ou ideia para alinharmos os próximos passos.</p>
+          <a href="https://instagram.com/jucorreaedit" target="_blank" rel="noopener" class="contact-instagram">
+            @jucorreaedit no Instagram →
+          </a>
+        </div>
+
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/mgogneke" method="POST" data-reveal novalidate>
+          <div class="form-row">
+            <label for="name">Nome completo</label>
+            <input type="text" id="name" name="name" required placeholder="Seu nome">
+            <span class="form-error"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="email">E-mail de contato</label>
+            <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            <span class="form-error"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="message">Fale sobre o projeto</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Tipo de vídeo, quantidade, prazos..."></textarea>
+            <span class="form-error"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Enviar Mensagem</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>
+        &copy; 2026 
+        <a href="https://www.instagram.com/beltrami.codes/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">
+          Paula Beltrami
+        </a>. Todos os direitos reservados.
+      </p>
+      <a href="#" class="back-to-top">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+
+  <!-- Script de Interações JS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Header scroll effect
+      const header = id('header');
+      window.addEventListener('scroll', () => {
+        if (header) {
+          header.classList.toggle('is-scrolled', window.scrollY > 20);
+        }
+      });
+
+      // 2. Mobile Nav Toggle
+      const navToggle = id('navToggle');
+      const mainNav = id('mainNav');
+
+      navToggle?.addEventListener('click', () => {
+        const isOpen = mainNav.classList.toggle('is-open');
+        navToggle.setAttribute('aria-expanded', isOpen);
+      });
+
+      // 3. Hero Rotator de Palavras
+      const words = document.querySelectorAll('#rotator .word');
+      let currentIndex = 0;
+      if (words.length > 0) {
+        setInterval(() => {
+          words[currentIndex].classList.remove('is-active');
+          currentIndex = (currentIndex + 1) % words.length;
+          words[currentIndex].classList.add('is-active');
+        }, 2800);
+      }
+
+      // 4. Filtro de Portfólio
+      const filterBtns = document.querySelectorAll('#portfolioFilters .filter-btn');
+      const items = document.querySelectorAll('#portfolioGrid .portfolio-item');
+      const emptyMsg = id('portfolioEmpty');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+
+          const filter = btn.getAttribute('data-filter');
+          let visibleCount = 0;
+
+          items.forEach(item => {
+            const category = item.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+              item.classList.remove('is-hidden');
+              visibleCount++;
+            } else {
+              item.classList.add('is-hidden');
+            }
+          });
+
+          if (emptyMsg) {
+            emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+          }
+        });
+      });
+
+      // 5. Scroll Reveal
+      const revealElements = document.querySelectorAll('[data-reveal]');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      revealElements.forEach(el => observer.observe(el));
+
+      // 6. Validação do formulário e integração Formspree
+      const form = id('contactForm');
+      const inputs = form?.querySelectorAll('input, textarea');
+
+      inputs?.forEach(input => {
+        input.addEventListener('blur', () => {
+          input.setAttribute('data-touched', 'true');
+        });
+      });
+
+      form?.addEventListener('submit', (e) => {
+        let isValid = true;
+
+        inputs?.forEach(input => {
+          input.setAttribute('data-touched', 'true');
+          const errorSpan = input.nextElementSibling;
+          
+          if (!input.checkValidity()) {
+            isValid = false;
+            if (errorSpan) errorSpan.textContent = 'Por favor, preencha este campo corretamente.';
+          } else {
+            if (errorSpan) errorSpan.textContent = '';
+          }
+        });
+
+        // Se houver erros, cancela o envio nativo
+        if (!isValid) {
+          e.preventDefault();
+        }
+      });
+
+      function id(str) { return document.getElementById(str); }
+    });
+  </script>
+</body>
+</html>
