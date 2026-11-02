@@ -1,192 +1,171 @@
-/**
- * PORTFÓLIO DE EDIÇÃO DE VÍDEO
- * Funcionalidades interativas e interações de UI/UX
- */
-
+/* jucorrea.edit · interações do site */
 document.addEventListener("DOMContentLoaded", () => {
-  // Inicialização de todas as funcionalidades
-  initMobileNav();
-  initHeaderScroll();
-  initTextRotator();
-  initPortfolioFilters();
-  initFormValidation();
-  initScrollReveal();
-});
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ==========================================================================
-   1. Menu Mobile (Hamburguer / Toggle)
-   ========================================================================== */
-function initMobileNav() {
-  const toggleBtn = document.querySelector(".nav-toggle");
-  const mainNav = document.querySelector(".main-nav");
+  /* 1. Header ao rolar */
+  const header = $("#header");
+  const onScroll = () => header?.classList.toggle("is-scrolled", window.scrollY > 20);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 
-  if (!toggleBtn || !mainNav) return;
-
-  toggleBtn.addEventListener("click", () => {
-    const isExpanded = toggleBtn.getAttribute("aria-expanded") === "true";
-    toggleBtn.setAttribute("aria-expanded", !isExpanded);
-    mainNav.classList.toggle("is-open");
-  });
-
-  // Fecha o menu ao clicar em um link
-  const navLinks = mainNav.querySelectorAll("a");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      toggleBtn.setAttribute("aria-expanded", "false");
-      mainNav.classList.remove("is-open");
-    });
-  });
-}
-
-/* ==========================================================================
-   2. Header com Efeito ao Rolar (Scrolled Border & Blur)
-   ========================================================================== */
-function initHeaderScroll() {
-  const header = document.querySelector(".site-header");
-  if (!header) return;
-
-  const handleScroll = () => {
-    if (window.scrollY > 20) {
-      header.classList.add("is-scrolled");
-    } else {
-      header.classList.remove("is-scrolled");
-    }
+  /* 2. Menu mobile */
+  const toggle = $("#navToggle");
+  const nav = $("#mainNav");
+  const setMenu = (open) => {
+    nav.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    document.documentElement.style.overflowY = open ? "hidden" : "";
   };
-
-  window.addEventListener("scroll", handleScroll, { passive: true });
-}
-
-/* ==========================================================================
-   3. Rotação de Palavras no Hero (.hero-rotator .word)
-   ========================================================================== */
-function initTextRotator() {
-  const rotator = document.querySelector(".hero-rotator");
-  if (!rotator) return;
-
-  const words = rotator.querySelectorAll(".word");
-  if (words.length < 2) return;
-
-  let currentIndex = 0;
-  const intervalTime = 3000; // Troca a cada 3 segundos
-
-  setInterval(() => {
-    // Remove a classe ativa da palavra atual
-    words[currentIndex].classList.remove("is-active");
-
-    // Calcula a próxima palavra
-    currentIndex = (currentIndex + 1) % words.length;
-
-    // Adiciona a classe ativa na próxima
-    words[currentIndex].classList.add("is-active");
-  }, intervalTime);
-}
-
-/* ==========================================================================
-   4. Filtro do Portfólio
-   ========================================================================== */
-function initPortfolioFilters() {
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  const items = document.querySelectorAll(".portfolio-item");
-  const emptyMessage = document.querySelector(".portfolio-empty");
-
-  if (!filterBtns.length || !items.length) return;
-
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      // Atualiza os botões ativos
-      filterBtns.forEach((b) => b.classList.remove("is-active"));
-      btn.classList.add("is-active");
-
-      const filterValue = btn.getAttribute("data-filter");
-      let visibleCount = 0;
-
-      items.forEach((item) => {
-        const category = item.getAttribute("data-category");
-
-        if (filterValue === "all" || category === filterValue) {
-          item.classList.remove("is-hidden");
-          visibleCount++;
-        } else {
-          item.classList.add("is-hidden");
-        }
-      });
-
-      // Exibe mensagem caso nenhum item pertença à categoria
-      if (emptyMessage) {
-        emptyMessage.style.display = visibleCount === 0 ? "block" : "none";
-      }
-    });
-  });
-}
-
-/* ==========================================================================
-   5. Validação e Envio do Formuário de Contato
-   ========================================================================== */
-function initFormValidation() {
-  const form = document.querySelector(".contact-form");
-  if (!form) return;
-
-  const inputs = form.querySelectorAll("input, textarea");
-
-  // Marca os campos como "tocados" ao sair do foco para exibir o erro CSS
-  inputs.forEach((input) => {
-    input.addEventListener("blur", () => {
-      input.setAttribute("data-touched", "true");
-    });
+  toggle?.addEventListener("click", () => setMenu(!nav.classList.contains("is-open")));
+  $$("a", nav).forEach((a) => a.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav.classList.contains("is-open")) setMenu(false);
   });
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    let isValid = true;
-
-    inputs.forEach((input) => {
-      input.setAttribute("data-touched", "true");
-      if (!input.checkValidity()) {
-        isValid = false;
-      }
-    });
-
-    if (isValid) {
-      // Exibe mensagem de sucesso
-      form.innerHTML = `
-        <div class="form-success">
-          <h3>Mensagem enviada com sucesso!</h3>
-          <p>Obrigado pelo contato. Retornarei o mais breve possível.</p>
-        </div>
-      `;
-    }
-  });
-}
-
-/* ==========================================================================
-   6. Animação de Ancoragem / Reveal ao Rolar (Intersection Observer)
-   ========================================================================== */
-function initScrollReveal() {
-  const revealElements = document.querySelectorAll("[data-reveal]");
-  if (!revealElements.length) return;
-
-  // Respeita preferência do usuário por movimento reduzido
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (prefersReducedMotion) {
-    revealElements.forEach((el) => el.classList.add("is-visible"));
-    return;
+  /* 3. Palavras que trocam no título */
+  const words = $$("#rotator .word");
+  if (words.length > 1 && !reduceMotion) {
+    let i = 0;
+    setInterval(() => {
+      words[i].classList.remove("is-active");
+      i = (i + 1) % words.length;
+      words[i].classList.add("is-active");
+    }, 2800);
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target); // Anima apenas uma vez
-        }
+  /* 3b. Vídeos do topo: pausados para quem prefere menos movimento; timecode correndo */
+  const heroVideos = $$(".hero-video");
+  if (reduceMotion) heroVideos.forEach((v) => { v.removeAttribute("autoplay"); v.pause(); });
+  const tc = $("#tc");
+  if (tc && !reduceMotion) {
+    const t0 = performance.now();
+    const pad = (n) => String(n).padStart(2, "0");
+    const tick = () => {
+      const ms = performance.now() - t0 + 12000;
+      const f = Math.floor((ms % 1000) / 41.67);
+      const s = Math.floor(ms / 1000);
+      tc.textContent = `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s / 60) % 60)}:${pad(s % 60)}:${pad(f)}`;
+      requestAnimationFrame(tick);
+    };
+    tick();
+  } else if (tc) tc.textContent = "00:00:12:08";
+
+  /* 4. Filtro do portfólio */
+  const filters = $$("#portfolioFilters .filter");
+  const works = $$("#portfolioGrid .work");
+  const empty = $("#portfolioEmpty");
+  filters.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filters.forEach((b) => {
+        b.classList.toggle("is-active", b === btn);
+        b.setAttribute("aria-pressed", String(b === btn));
       });
-    },
-    {
-      threshold: 0.15,
-      rootMargin: "0px 0px -50px 0px",
-    }
+      const f = btn.dataset.filter;
+      let visible = 0;
+      works.forEach((w) => {
+        const show = f === "all" || w.dataset.category === f;
+        w.classList.toggle("is-hidden", !show);
+        if (show) visible++;
+        else $$("video", w).forEach((v) => v.pause());
+      });
+      if (empty) empty.hidden = visible !== 0;
+    });
+  });
+
+  /* 5. YouTube: carrega o player só quando a pessoa clica (site mais leve) */
+  $$(".yt").forEach((btn) => {
+    const img = $("img", btn);
+    img?.addEventListener("error", () => img.remove());
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.yt;
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.title = btn.getAttribute("aria-label") || "Vídeo do YouTube";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      btn.replaceWith(iframe);
+    });
+  });
+
+  /* 6. Só um vídeo tocando por vez */
+  $$("video[controls]").forEach((v) =>
+    v.addEventListener("play", () => {
+      $$("video[controls]").forEach((o) => { if (o !== v) o.pause(); });
+    })
   );
 
-  revealElements.forEach((el) => observer.observe(el));
-}
+  /* 7. Animação de entrada ao rolar */
+  const reveals = $$("[data-reveal]");
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    reveals.forEach((el) => el.classList.add("is-visible"));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          en.target.classList.add("is-visible");
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    reveals.forEach((el) => io.observe(el));
+  }
+
+  /* 8. Formulário (Formspree) com validação e confirmação na própria página */
+  const form = $("#contactForm");
+  const status = $("#formStatus");
+  if (form) {
+    const fields = $$("input, textarea", form);
+    const msg = (el) => {
+      if (el.validity.valueMissing) return "Esse campo é obrigatório.";
+      if (el.validity.typeMismatch) return "Confere o e-mail? Parece que falta algo.";
+      return "";
+    };
+    fields.forEach((el) => {
+      el.addEventListener("blur", () => {
+        el.dataset.touched = "true";
+        el.nextElementSibling.textContent = msg(el);
+      });
+      el.addEventListener("input", () => {
+        if (el.dataset.touched) el.nextElementSibling.textContent = msg(el);
+      });
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      let ok = true;
+      fields.forEach((el) => {
+        el.dataset.touched = "true";
+        const m = msg(el);
+        el.nextElementSibling.textContent = m;
+        if (m) ok = false;
+      });
+      if (!ok) {
+        fields.find((el) => !el.checkValidity())?.focus();
+        return;
+      }
+
+      const btn = $("button[type=submit]", form);
+      btn.disabled = true;
+      btn.textContent = "Enviando…";
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+        if (!res.ok) throw new Error("falha");
+        form.reset();
+        fields.forEach((el) => delete el.dataset.touched);
+        status.textContent = "recebi! já já te respondo :)";
+        btn.textContent = "Mensagem enviada";
+      } catch {
+        status.textContent = "ops, não foi. tenta de novo ou me chama no WhatsApp?";
+        btn.disabled = false;
+        btn.textContent = "Enviar mensagem";
+      }
+    });
+  }
+});
